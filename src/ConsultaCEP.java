@@ -6,24 +6,24 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ConsultaCEP {
-    public Endereco buscaEndereco (String cep) {
-        URI endereco = URI.create("https://www.viacep.com.br/ws/" + cep + "/json/");
+    public Endereco buscaEndereco (String cep){
+        URI endereco = URI.create("https://viacep.com.br/ws/" + cep + "/json/");
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(endereco)
+                .uri((endereco))
                 .build();
+
+
         try {
             HttpResponse<String> response = HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            return  new Gson().fromJson(response.body(), Endereco.class);
-        } catch (Exception e){
-            throw new RuntimeException("Ouve um erro na busca do endereço!");
+            return new Gson().fromJson(response.body(), Endereco.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Não consegui obter o CEP");
+
         }
 
 
     }
-
-
-
 }

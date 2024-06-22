@@ -1,19 +1,20 @@
-import java.util.Scanner;
+
+
 
 public class Principal {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args)  {
         ConsultaCEP consultaCEP = new ConsultaCEP();
-        System.out.println("Qual seu CEP?");
-        var cep = sc.nextLine();
-
         try {
-            Endereco novoEndereco = consultaCEP.buscaEndereco(cep);
+            Endereco novoEndereco = consultaCEP.buscaEndereco("20766200");
             System.out.println(novoEndereco);
-        }catch (RuntimeException e){
+        }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Aplicação Finalizada");
+            System.out.println("Ocorreu algum erro!");
         }
 
+
+
+
     }
+
 }
